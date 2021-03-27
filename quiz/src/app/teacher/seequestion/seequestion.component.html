@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+
+</head>
+
+<body>
+  <app-teachernav></app-teachernav>
+  <div *ngIf="load; then thenBlock else myelseBlock"></div>
+  <ng-template #thenBlock>
+  </ng-template>
+  <ng-template #myelseBlock>
+    <div *ngFor="let one of allQuestions;index as j">
+      <div class="container mt-sm-5 my-1">
+        <div class="question ml-sm-5 pl-sm-5 pt-2">
+          <div class="py-2"><b>Q{{j+1}} - {{one.questionText}}</b></div>
+          <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options" *ngFor="let option of one.options;index as i">
+
+
+            <label class="options"><span>{{i+1}} ) </span>{{option.optionText}}</label>
+          </div>
+          <label class="options"><span>Answer :- {{one.answer}}</span></label>
+        </div>
+
+
+      </div>
+    </div>
+  </ng-template>
+</body>
+
+</html>

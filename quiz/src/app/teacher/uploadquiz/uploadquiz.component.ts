@@ -1,0 +1,107 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TeacherService } from 'src/app/services/teacher.service';
+
+@Component({
+  selector: 'app-uploadquiz',
+  templateUrl: './uploadquiz.component.html',
+  styleUrls: ['./uploadquiz.component.css']
+})
+export class UploadquizComponent implements OnInit {
+
+  msg: any = [];
+  avail: boolean;
+  public quiz: any[];
+  empty: boolean;
+  constructor(private teacherService: TeacherService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.empty = false;
+    this.getdata();
+  }
+
+
+  getdata() {
+    this.teacherService.getuploadquiz()
+      .subscribe(
+        data => {
+
+          this.quiz = data['quiz']
+          if (!this.quiz.length) {
+            this.empty = true;
+
+          }
+          else {
+            this.empty = false;
+          }
+          // console.log(data);
+          // this.router.navigate(['/teacher/teacherhome']);
+        },
+        error => {
+          console.error(error);
+        }
+
+
+      )
+
+  }
+
+  add(quiz) {
+    this.teacherService.setQuizId(quiz._id);
+    this.router.navigate(['/teacher/addquestion']);
+  }
+
+  upload(quiz) {
+    console.log("upload");
+    console.log(quiz);
+    console.log(quiz._id);
+    this.teacherService.uploadquiz(quiz._id)
+      .subscribe(
+        data => {
+
+          // this.quiz = data['quiz']
+          console.log(data);
+          if (data['msg']) {
+            this.msg = data['msg'];
+            this.avail = true;
+            return;
+          }
+          if (data['message']) {
+            this.router.navigate(['/teacher/teacherhome']);
+          }
+          else {
+            this.msg = "something went wrong!!";
+            this.avail = true;
+            return;
+          }
+        },
+        error => {
+          console.error(error);
+        }
+
+
+      )
+  }
+
+  delete(quiz) {
+    this.teacherService.deletequiz(quiz._id)
+      .subscribe(
+        data => {
+
+          // this.quiz = data['quiz']
+          console.log(data);
+          this.router.navigate(['/teacher/teacherhome']);
+        },
+        error => {
+          console.error(error);
+        }
+
+
+      )
+  }
+  viewQuestion(q)
+  {
+    this.teacherService.setQuizId(q._id);
+    this.router.navigate(['/teacher/seequestion']);
+  }
+}

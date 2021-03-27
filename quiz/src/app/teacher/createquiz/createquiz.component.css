@@ -1,0 +1,19 @@
+label{
+  font-size: 17px;
+  padding: 10px 0;
+}
+
+button{
+
+  margin-top: 20px;
+}
+
+.btn-primary{
+  background-color: #0a192f;
+  font-weight: 600;
+  outline: none;
+  border: none;
+}
+
+
+

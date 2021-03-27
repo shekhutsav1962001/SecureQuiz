@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+
+<body>
+  <app-teachernav></app-teachernav>
+  <div *ngIf="empty; else elseBlock">
+    <div style="margin-top: 50px;" class="d-flex justify-content-center">
+      <div class="row">
+        <div class="col-6">
+          <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
+          <h5 class="text-capitalize m-lg-5">Not found any created Quiz!!</h5>
+        </div>
+        <div class="col-6">
+          <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <table class="table table-hover w-50"
+      style="background-color: white; margin-top: 100px;  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.5);">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Block</th>
+          <th scope="col">Unblock</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users;index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{user.email}}</td>
+          <td>
+
+            <button class="btn btn-link" [disabled]="user.blocked" (click)="block(user)"><i class="fa fa-ban"
+                aria-hidden="true"></i></button>
+          </td>
+          <td><button class="btn btn-link" [disabled]="!user.blocked" (click)="unblock(user)"><i class="fa fa-unlock"
+                aria-hidden="true"></i></button></td>
+
+
+          <!-- (click)="delete(user)" -->
+
+        </tr>
+
+      </tbody>
+    </table>
+  </ng-template>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<app-teachernav></app-teachernav>
+<div class="container mt-5">
+  <form #f="ngForm" (ngSubmit)="addQuestion(f)">
+
+
+
+
+    <div class="form-group">
+      <label for="questionText">Question Text</label>
+      <input type="text" name="questionText" class="form-control" autocomplete="off" id="questionText" ngModel required
+        #questionText="ngModel">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="optionA">Option1</label>
+      <input type="text" class="form-control" name="optionA" autocomplete="off" id="optionA" ngModel required #optionA="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="optionB">Option2</label>
+      <input type="text" class="form-control" name="optionB"  autocomplete="off" id="optionB" ngModel required #optionB="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="optionC">Option3</label>
+      <input type="text" class="form-control" name="optionC" autocomplete="off" id="optionC" ngModel required #optionC="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="optionD">Option4</label>
+      <input type="text" class="form-control" name="optionD" autocomplete="off" id="optionD" ngModel required #optionD="ngModel">
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+      <label for="answer">Answer</label>
+      <input type="radio" value="1" name="answer" id="answer" ngModel required #answer="ngModel">1
+      <input type="radio" value="2" name="answer" id="answer" ngModel required #answer="ngModel">2
+      <input type="radio" value="3" name="answer" id="answer" ngModel required #answer="ngModel">3
+      <input type="radio" value="4" name="answer" id="answer" ngModel required #answer="ngModel">4
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+  </form>
+  <p class="social-text" style="color: red;font-weight: bold;font-size: 20px;" *ngIf="avail">{{msg}}</p>
+</div>
