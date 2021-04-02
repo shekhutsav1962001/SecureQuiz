@@ -88,7 +88,6 @@ export class UploadquizComponent implements OnInit {
       .subscribe(
         data => {
 
-          // this.quiz = data['quiz']
           console.log(data);
           this.router.navigate(['/teacher/teacherhome']);
         },
@@ -102,6 +101,7 @@ export class UploadquizComponent implements OnInit {
   viewQuestion(q)
   {
     this.teacherService.setQuizId(q._id);
+    this.teacherService.setDelete(q.upload)
     this.router.navigate(['/teacher/seequestion']);
   }
 }

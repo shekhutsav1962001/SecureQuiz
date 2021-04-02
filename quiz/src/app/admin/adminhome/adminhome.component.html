@@ -1,1 +1,40 @@
-<p>adminhome works!</p>
+<app-adminnav></app-adminnav>
+<!-- <div *ngIf="loading; then thenBlock else myelseBlock"></div>
+<ng-template #thenBlock>
+  <app-loading></app-loading>
+</ng-template>
+<ng-template #myelseBlock> -->
+<div class="container" id="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-image">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quiz Title</th>
+            <th scope="col">Quiz Description</th>
+            <th scope="col">Quiz Creater's Email</th>
+            <th scope="col">View Question</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let item of allquiz;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.quizname}}</td>
+            <td>{{item.quizdescription}}</td>
+            <td>{{item.owneremail}}</td>
+            <td>
+              <button class="btn btn-light" (click)="viewQuestion(item)"><i class="fa fa-eye" style="color: #0a192f;"
+                  aria-hidden="true"></i></button>
+            </td>
+            <td><button (click)="delete(item)" style="color: #f1f1f1;" class="btn btn-danger">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- </ng-template> -->

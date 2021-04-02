@@ -10,12 +10,12 @@ import { TeacherService } from 'src/app/services/teacher.service';
 export class TeacherhomeComponent implements OnInit {
 
   msg: any = [];
-  empty:boolean;
+  empty: boolean;
   avail: boolean;
-  public quiz:any[];
+  public quiz: any[];
   constructor(private teacherService: TeacherService, private router: Router) { }
   ngOnInit(): void {
-    this.empty=false;
+    this.empty = false;
     this.getdata();
   }
 
@@ -26,13 +26,11 @@ export class TeacherhomeComponent implements OnInit {
 
           this.quiz = data['quiz']
           console.log(this.quiz.length);
-          if(!this.quiz.length)
-          {
+          if (!this.quiz.length) {
             this.empty = true;
 
           }
-          else
-          {
+          else {
             this.empty = false;
           }
           // console.log(data);
@@ -47,9 +45,26 @@ export class TeacherhomeComponent implements OnInit {
 
   }
 
-  viewQuestion(q)
-  {
+  viewQuestion(q) {
     this.teacherService.setQuizId(q._id);
+    this.teacherService.setDelete(q.upload)
     this.router.navigate(['/teacher/seequestion']);
+  }
+
+  delete(quiz) {
+    this.teacherService.deletequiz(quiz._id)
+      .subscribe(
+        data => {
+
+          console.log(data);
+          this.getdata();
+          // this.router.navigate(['/teacher/teacherhome']);
+        },
+        error => {
+          console.error(error);
+        }
+
+
+      )
   }
 }

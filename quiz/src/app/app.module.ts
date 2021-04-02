@@ -31,6 +31,13 @@ import { UploadquizComponent } from './teacher/uploadquiz/uploadquiz.component';
 import { SeestudentsComponent } from './teacher/seestudents/seestudents.component';
 import { AddquestionComponent } from './teacher/addquestion/addquestion.component';
 import { SeequestionComponent } from './teacher/seequestion/seequestion.component';
+import { StudentComponent } from './admin/student/student.component';
+import { TeacherComponent } from './admin/teacher/teacher.component';
+import { NotfoundErrorComponent } from './error/notfound-error/notfound-error.component';
+import { ServerErrorComponent } from './error/server-error/server-error.component';
+import { LoadingComponent } from './loading/loading/loading.component';
+import { MsgboxComponent } from './msgbox/msgbox.component';
+import { ViewQuestionComponent } from './admin/view-question/view-question.component';
 // import { WebcamModule } from 'ngx-webcam';
 //  import { NgxCaptchaModule } from 'ngx-captcha';
 
@@ -57,7 +64,14 @@ import { SeequestionComponent } from './teacher/seequestion/seequestion.componen
     UploadquizComponent,
     SeestudentsComponent,
     AddquestionComponent,
-    SeequestionComponent
+    SeequestionComponent,
+    StudentComponent,
+    TeacherComponent,
+    NotfoundErrorComponent,
+    ServerErrorComponent,
+    LoadingComponent,
+    MsgboxComponent,
+    ViewQuestionComponent
   ],
   imports: [
     BrowserModule,

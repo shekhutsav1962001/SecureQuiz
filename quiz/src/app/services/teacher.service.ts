@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class TeacherService {
-  private quizid:any;
+  private quizid: any;
+  private delete:any;
   public avail: boolean = false;
   public msg: string = "";
   private baseUri: string = "http://localhost:3000/teacher/";
@@ -14,70 +15,71 @@ export class TeacherService {
   constructor(private http: HttpClient, private router: Router) { }
 
   createQuiz(body: any) {
-    return this.http.post(this.baseUri+"createquiz", body, {
+    return this.http.post(this.baseUri + "createquiz", body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
-  getuploadquiz()
-  {
+  getuploadquiz() {
     return this.http.get(this.baseUri + "getuploadquiz", { headers: this.headers });
   }
 
-  gethomequiz()
-  {
+  gethomequiz() {
     return this.http.get(this.baseUri + "gethomequiz", { headers: this.headers });
   }
 
-  seestudent()
-  {
+  seestudent() {
     return this.http.get(this.baseUri + "seestudent", { headers: this.headers });
   }
 
 
-  blockuser(id)
-  {
-    return this.http.delete(this.baseUri + "blockuser/"+id, { headers: this.headers });
+  blockuser(id) {
+    return this.http.delete(this.baseUri + "blockuser/" + id, { headers: this.headers });
   }
-  unblockuser(id)
-  {
-    return this.http.delete(this.baseUri + "unblockuser/"+id, { headers: this.headers });
+  unblockuser(id) {
+    return this.http.delete(this.baseUri + "unblockuser/" + id, { headers: this.headers });
   }
 
 
-  setQuizId(id)
-  {
-    this.quizid =id;
+  setQuizId(id) {
+    this.quizid = id;
   }
 
-  getQuizId()
-  {
+  getQuizId() {
     return this.quizid;
   }
 
-  deletequiz(id)
-  {
-    return this.http.delete(this.baseUri + "deletequiz/"+id, { headers: this.headers });
+  deletequiz(id) {
+    return this.http.delete(this.baseUri + "deletequiz/" + id, { headers: this.headers });
   }
 
-  uploadquiz(body)
-  {
-    return this.http.post(this.baseUri+"uploadquiz", {id:body}, {
+  uploadquiz(body) {
+    return this.http.post(this.baseUri + "uploadquiz", { id: body }, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
-  addQuestion(body)
-  {
-    return this.http.post(this.baseUri+"addquestion", body, {
+  addQuestion(body) {
+    return this.http.post(this.baseUri + "addquestion", body, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
 
-  getAllQuestion(id)
-  {
-    return this.http.get(this.baseUri + "getallquestion/"+id, { headers: this.headers });
+  getAllQuestion(id) {
+    return this.http.get(this.baseUri + "getallquestion/" + id, { headers: this.headers });
+  }
+
+  deleteQuestion(id) {
+    return this.http.delete(this.baseUri + "deletequestion/" + id, { headers: this.headers });
+  }
+
+  setDelete(data) {
+    this.delete = data;
+  }
+
+  getDelete() {
+    return this.delete;
   }
 }
