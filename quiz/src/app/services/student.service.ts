@@ -8,13 +8,30 @@ import { Router } from '@angular/router';
 export class StudentService {
 
   public avail: boolean = false;
+  private quizid: any;
   public msg: string = "";
-  private baseUri: string = "http://localhost:3000/student";
+  private baseUri: string = "http://localhost:3000/student/";
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient, private router: Router) { }
 
-  registerStudent(body: any) {
-    return this.http.post('http://127.0.0.1:3000/registerstudnet', body, {
+  getAllQuiz() {
+    return this.http.get(this.baseUri + "getallquiz", { headers: this.headers });
+  }
+
+  setQuizId(id) {
+    this.quizid = id;
+  }
+
+  getQuizId() {
+    return this.quizid;
+  }
+  getAllQuestion(id) {
+    return this.http.get(this.baseUri + "getallquestion/" + id, { headers: this.headers });
+  }
+
+  block()
+  {
+    return this.http.put(this.baseUri + "blockme", {}, {
       observe: 'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });

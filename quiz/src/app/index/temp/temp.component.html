@@ -8,7 +8,6 @@
     crossorigin="anonymous">
 
 </head>
-
 <body>
   <div class="container mt-sm-5 my-1">
     <div class="bg-white p-3 border-bottom">
@@ -29,20 +28,11 @@
     <div class="d-flex align-items-center pt-3" style="position: relative;margin-top: 20px;margin-bottom: 20px;" *ngIf="!finalsubmit">
       <div class="clsbtnleft"> <button class="btn btn-primary" [disabled]="flageLast"
           (click)="nextQuestion()">Next</button> </div>
-          <!-- [disabled]="!flageLast" -->
-          <!-- [disabled]="!notsubmit" -->
       <div class="clsbtnright" > <button class="btn btn-success" [disabled]="!flageLast" data-toggle="modal" data-target="#myModal"
          (click)="lastsubmit()">Submit</button> </div>
     </div>
 
   </div>
-
-  <!-- <div class="container d-flex justify-content-center">
-    <div class="row">
-      <div class="col-md-6"> <button type="button" class="btn btn-lg btn-warning" data-toggle="modal"
-          data-target="#myModal">Open Congratulations card Modal</button> </div>
-    </div>
-  </div> -->
   <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog">
       <div class="card">
@@ -59,12 +49,3 @@
 </body>
 
 </html>
-<!-- <div class="text-danger">
-  time 00:{{timePerQuestion}} <br>
-</div> -->
-
-
-<!-- <button class="btn btn-danger" value="submit" (click)="subm()">submit ans of this question</button> -->
-<!-- <button class="btn btn-danger" value="submit" [disabled]="flageLast" (click)="nextQuestion()">Next</button> -->
-<!-- <button class="btn btn-danger" value="submit" [disabled]="!flageLast" (click)="lastsubmit()">Submit Quiz</button> -->
-<!-- <hr> -->

@@ -13,13 +13,7 @@ export class AdminService {
   private baseUri: string = "http://localhost:3000/admin/";
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient, private router: Router) { }
-
-  // registerStudent(body: any) {
-  //   return this.http.post('http://127.0.0.1:3000/registerstudnet', body, {
-  //     observe: 'body',
-  //     headers: new HttpHeaders().append('Content-Type', 'application/json')
-  //   });
-  // }
+  
 
   seestudent() {
     return this.http.get(this.baseUri + "seestudent", { headers: this.headers });

@@ -28,9 +28,8 @@ import { ServerErrorComponent } from './error/server-error/server-error.componen
 import { StudentComponent } from './admin/student/student.component';
 import { TeacherComponent } from './admin/teacher/teacher.component';
 import { ViewQuestionComponent } from './admin/view-question/view-question.component';
-// import { TeachernavComponent } from './teacher/teachernav/teachernav.component';
-// import { AdminnavComponent } from './admin/adminnav/adminnav.component';
-// import { StudentnavComponent } from './student/studentnav/studentnav.component';
+import { CheatingComponent } from './error/cheating/cheating.component';
+import { PlayquizComponent } from './student/playquiz/playquiz.component';
 
 const routes: Routes = [
   // root
@@ -44,7 +43,7 @@ const routes: Routes = [
   { path: 'reset-password-done', component: ResetPasswordDoneComponent },
   // testing
   { path: 'a', component: TempComponent },
-  // { path: 't', component: ServerErrorComponent},
+  // { path: 't', component: CheatingComponent},
   { path: 'b', component: IndexheaderComponent },
   // teacher
   { path: 'teacher/teacherhome', component: TeacherhomeComponent, canActivate: [TeacherGuard] },
@@ -55,12 +54,14 @@ const routes: Routes = [
   { path: 'teacher/seequestion', component: SeequestionComponent, canActivate: [TeacherGuard] },
   // student
   { path: 'student/studenthome', component: StudenthomeComponent },
+  { path: 'student/playquiz', component: PlayquizComponent},
   // admin
   { path: 'admin/adminhome', component: AdminhomeComponent },
   { path: 'admin/viewstudent', component: StudentComponent},
   { path: 'admin/viewteacher', component: TeacherComponent},
   { path: 'admin/seequestion', component:ViewQuestionComponent },
   // error
+  { path: 'cheat', component: CheatingComponent },
   { path: 'error', component: ServerErrorComponent },
   { path: '**', component: NotfoundErrorComponent },
 

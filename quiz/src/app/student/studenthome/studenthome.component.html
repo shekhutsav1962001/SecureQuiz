@@ -1,1 +1,32 @@
-<p>studenthome works!</p>
+<app-studentnav></app-studentnav>
+<!-- <p>studenthome works!</p> -->
+<div class="container" id="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-image">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quiz Title</th>
+            <th scope="col">Quiz Description</th>
+            <th scope="col">Quiz Creater's Email</th>
+            <th scope="col">View Question</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let item of allquiz;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.quizname}}</td>
+            <td>{{item.quizdescription}}</td>
+            <td>{{item.owneremail}}</td>
+            <td>
+              <button (click)="playquiz(item)" class="btn btn-light">Play Quiz</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

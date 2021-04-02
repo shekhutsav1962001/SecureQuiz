@@ -38,6 +38,8 @@ import { ServerErrorComponent } from './error/server-error/server-error.componen
 import { LoadingComponent } from './loading/loading/loading.component';
 import { MsgboxComponent } from './msgbox/msgbox.component';
 import { ViewQuestionComponent } from './admin/view-question/view-question.component';
+import { PlayquizComponent } from './student/playquiz/playquiz.component';
+import { CheatingComponent } from './error/cheating/cheating.component';
 // import { WebcamModule } from 'ngx-webcam';
 //  import { NgxCaptchaModule } from 'ngx-captcha';
 
@@ -71,7 +73,9 @@ import { ViewQuestionComponent } from './admin/view-question/view-question.compo
     ServerErrorComponent,
     LoadingComponent,
     MsgboxComponent,
-    ViewQuestionComponent
+    ViewQuestionComponent,
+    PlayquizComponent,
+    CheatingComponent
   ],
   imports: [
     BrowserModule,
