@@ -12,31 +12,31 @@ export class SeestudentsComponent implements OnInit {
   public users: any[];
   avail: boolean;
   empty: boolean;
+  public loading: any = true;
   constructor(private teacherService: TeacherService, private router: Router) { }
 
   ngOnInit(): void {
-    this.empty=false;
+    this.loading = true
+    this.empty = false;
     this.getdata();
   }
 
-  getdata()
-  {
+  getdata() {
     this.teacherService.seestudent()
       .subscribe(
         data => {
+          if (data['user']) {
 
-          this.users = data['user']
-          if(!this.users.length)
-          {
-            this.empty = true;
 
+            this.users = data['user']
+            this.loading = false
+            if (!this.users.length) {
+              this.empty = true;
+            }
+            else {
+              this.empty = false;
+            }
           }
-          else
-          {
-            this.empty = false;
-          }
-          // console.log(data);
-          // this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
           console.error(error);

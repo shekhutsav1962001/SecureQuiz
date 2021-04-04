@@ -10,10 +10,13 @@ import { StudentService } from 'src/app/services/student.service';
 export class StudenthomeComponent implements OnInit {
 
   allquiz: any;
-
+  public loading: any = true;
+  public empty: any = true;
   constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true 
+    this.empty = true
     this.getdata();
   }
 
@@ -21,16 +24,24 @@ export class StudenthomeComponent implements OnInit {
     this.studentService.getAllQuiz()
       .subscribe(
         data => {
-          this.allquiz = data['quiz']
-          console.log(this.allquiz);
+          if (data['quiz']) {
+            this.loading = false
+            this.allquiz = data['quiz']
+            console.log(this.allquiz.length);
+            if (!this.allquiz.length) {
+              this.empty = true;
+            }
+            else {
+              this.empty = false;
+            }
+          }
         },
         error => {
           console.error(error);
         })
   }
 
-  playquiz(item)
-  {
+  playquiz(item) {
     this.studentService.setQuizId(item._id);
     this.router.navigate(['/student/playquiz']);
   }

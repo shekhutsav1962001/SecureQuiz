@@ -13,25 +13,48 @@
   <app-teachernav></app-teachernav>
   <div *ngIf="load; then thenBlock else myelseBlock"></div>
   <ng-template #thenBlock>
+    <app-loading></app-loading>
   </ng-template>
   <ng-template #myelseBlock>
-    <div *ngFor="let one of allQuestions;index as j">
-      <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-          <div class="py-2"><b>Q{{j+1}} - {{one.questionText}}</b></div>
-          <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options" *ngFor="let option of one.options;index as i">
 
 
-            <label class="options"><span>{{i+1}} ) </span>{{option.optionText}}</label>
+    <div *ngIf="empty; else elseBlock">
+      <div style="margin-top: 50px;" class="d-flex justify-content-center">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
+            <h5 class="text-capitalize m-lg-5">Not found any Question in the Quiz!!</h5>
           </div>
-          <label class="options"><span>Answer :- {{one.answer}}</span></label>
+          <div class="col-6">
+            <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
+          </div>
         </div>
-        <div class="d-flex align-items-center py-2" style="position: relative;margin-top: 20px;">
-          <button (click)="delete(one)" [disabled]="del"  class="btn btn-danger">delete</button>
-        </div>
+
 
       </div>
     </div>
+
+    <ng-template #elseBlock>
+
+      <div *ngFor="let one of allQuestions;index as j">
+        <div class="container mt-sm-5 my-1">
+          <div class="question ml-sm-5 pl-sm-5 pt-2">
+            <div class="py-2"><b>Q{{j+1}} - {{one.questionText}}</b></div>
+            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options"
+              *ngFor="let option of one.options;index as i">
+
+
+              <label class="options"><span>{{i+1}} ) </span>{{option.optionText}}</label>
+            </div>
+            <label class="options"><span>Answer :- {{one.answer}}</span></label>
+          </div>
+          <div class="d-flex align-items-center py-2" style="position: relative;margin-top: 20px;">
+            <button (click)="delete(one)" [disabled]="del" class="btn btn-danger">delete</button>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
   </ng-template>
 </body>
 

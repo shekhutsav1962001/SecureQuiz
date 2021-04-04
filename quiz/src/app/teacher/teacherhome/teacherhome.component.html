@@ -17,56 +17,61 @@
 
 <body>
   <app-teachernav></app-teachernav>
-
-  <div *ngIf="empty; else elseBlock">
-    <div style="margin-top: 50px;" class="d-flex justify-content-center">
-      <div class="row">
-        <div class="col-6">
-          <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
-          <h5 class="text-capitalize m-lg-5">Not found any uploaded Quiz!!</h5>
-        </div>
-        <div class="col-6">
-          <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-
-  <ng-template #elseBlock>
-
-    <table class="table table-hover w-50"
-      style="background-color: white; margin-top: 100px;  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.5);">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Quiz Name</th>
-          <th scope="col">Quiz Description</th>
-          <th scope="col">See Question</th>
-          <th scope="col">Delete</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let q of quiz;index as i">
-          <th scope="row">{{i+1}}</th>
-          <td>{{q.quizname}}</td>
-          <td>
-            {{q.quizdescription}}
-          </td>
-          <td>
-            <button class="btn btn-light" (click)="viewQuestion(q)"><i class="fa fa-eye"
-                style="color: #0a192f;" aria-hidden="true"></i></button>
-          </td>
-          <td><button (click)="delete(q)" class="btn btn-danger">Delete</button></td>
-        </tr>
-
-      </tbody>
-    </table>
+  <div *ngIf="loading; then thenBlock else myelseBlock"></div>
+  <ng-template #thenBlock>
+    <app-loading></app-loading>
   </ng-template>
+  <ng-template #myelseBlock>
+
+    <div *ngIf="empty; else elseBlock">
+      <div style="margin-top: 50px;" class="d-flex justify-content-center">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
+            <h5 class="text-capitalize m-lg-5">Not found any uploaded Quiz!!</h5>
+          </div>
+          <div class="col-6">
+            <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
+          </div>
+        </div>
 
 
+      </div>
+    </div>
+
+    <ng-template #elseBlock>
+
+      <table class="table table-hover w-50"
+        style="background-color: white; margin-top: 100px;  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.5);">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quiz Name</th>
+            <th scope="col">Quiz Description</th>
+            <th scope="col">See Question</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of quiz;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{q.quizname}}</td>
+            <td>
+              {{q.quizdescription}}
+            </td>
+            <td>
+              <button class="btn btn-light" (click)="viewQuestion(q)"><i class="fa fa-eye" style="color: #0a192f;"
+                  aria-hidden="true"></i></button>
+            </td>
+            <td><button (click)="delete(q)" class="btn btn-danger">Delete</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </ng-template>
+
+  </ng-template>
 
 
 </body>

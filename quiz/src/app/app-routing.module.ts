@@ -53,13 +53,13 @@ const routes: Routes = [
   { path: 'teacher/addquestion', component: AddquestionComponent, canActivate: [TeacherGuard] },
   { path: 'teacher/seequestion', component: SeequestionComponent, canActivate: [TeacherGuard] },
   // student
-  { path: 'student/studenthome', component: StudenthomeComponent },
-  { path: 'student/playquiz', component: PlayquizComponent},
+  { path: 'student/studenthome', component: StudenthomeComponent,canActivate: [StudentGuard] },
+  { path: 'student/playquiz', component: PlayquizComponent,canActivate: [StudentGuard]},
   // admin
-  { path: 'admin/adminhome', component: AdminhomeComponent },
-  { path: 'admin/viewstudent', component: StudentComponent},
-  { path: 'admin/viewteacher', component: TeacherComponent},
-  { path: 'admin/seequestion', component:ViewQuestionComponent },
+  { path: 'admin/adminhome', component: AdminhomeComponent,canActivate: [AdminGuard] },
+  { path: 'admin/viewstudent', component: StudentComponent,canActivate: [AdminGuard]},
+  { path: 'admin/viewteacher', component: TeacherComponent,canActivate: [AdminGuard]},
+  { path: 'admin/seequestion', component:ViewQuestionComponent ,canActivate: [AdminGuard]},
   // error
   { path: 'cheat', component: CheatingComponent },
   { path: 'error', component: ServerErrorComponent },

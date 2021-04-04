@@ -10,9 +10,10 @@
 </head>
 
 <body>
-  <app-studentnav></app-studentnav>
+  <app-studentnav *ngIf="finalsubmit"></app-studentnav>
   <div *ngIf="load; then thenBlock else myelseBlock"></div>
   <ng-template #thenBlock>
+    <app-loading></app-loading>
   </ng-template>
   <ng-template #myelseBlock>
 

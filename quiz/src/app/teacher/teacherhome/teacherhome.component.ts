@@ -13,8 +13,10 @@ export class TeacherhomeComponent implements OnInit {
   empty: boolean;
   avail: boolean;
   public quiz: any[];
+  public loading: any = true;
   constructor(private teacherService: TeacherService, private router: Router) { }
   ngOnInit(): void {
+    this.loading = true
     this.empty = false;
     this.getdata();
   }
@@ -23,16 +25,19 @@ export class TeacherhomeComponent implements OnInit {
     this.teacherService.gethomequiz()
       .subscribe(
         data => {
+          if (data['quiz']) {
+            this.quiz = data['quiz']
+            this.loading = false;
+            console.log(this.quiz.length);
+            if (!this.quiz.length) {
+              this.empty = true;
 
-          this.quiz = data['quiz']
-          console.log(this.quiz.length);
-          if (!this.quiz.length) {
-            this.empty = true;
+            }
+            else {
+              this.empty = false;
+            }
+          }
 
-          }
-          else {
-            this.empty = false;
-          }
           // console.log(data);
           // this.router.navigate(['/teacher/teacherhome']);
         },

@@ -15,52 +15,58 @@
 
 <body>
   <app-adminnav></app-adminnav>
-  <div *ngIf="empty; else elseBlock">
-    <div style="margin-top: 50px;" class="d-flex justify-content-center">
-      <div class="row">
-        <div class="col-6">
-          <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
-          <h5 class="text-capitalize m-lg-5">Not found any Student</h5>
+  <div *ngIf="loading; then thenBlock else myelseBlock"></div>
+  <ng-template #thenBlock>
+    <app-loading></app-loading>
+  </ng-template>
+  <ng-template #myelseBlock>
+    <div *ngIf="empty; else elseBlock">
+      <div style="margin-top: 50px;" class="d-flex justify-content-center">
+        <div class="row">
+          <div class="col-6">
+            <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
+            <h5 class="text-capitalize m-lg-5">Not found any Student</h5>
+          </div>
+          <div class="col-6">
+            <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
+          </div>
         </div>
-        <div class="col-6">
-          <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
-        </div>
+
+
       </div>
-
-
     </div>
-  </div>
-  <ng-template #elseBlock>
-    <table class="table table-hover w-50"
-      style="background-color: white; margin-top: 100px;  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.5);">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Block</th>
-          <th scope="col">Unblock</th>
+    <ng-template #elseBlock>
+      <table class="table table-hover w-50"
+        style="background-color: white; margin-top: 100px;  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.5);">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Block</th>
+            <th scope="col">Unblock</th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users;index as i">
-          <th scope="row">{{i+1}}</th>
-          <td>{{user.email}}</td>
-          <td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.email}}</td>
+            <td>
 
-            <button class="btn btn-link" [disabled]="user.blocked" (click)="block(user)"><i class="fa fa-ban"
-                aria-hidden="true"></i></button>
-          </td>
-          <td><button class="btn btn-link" [disabled]="!user.blocked" (click)="unblock(user)"><i class="fa fa-unlock"
-                aria-hidden="true"></i></button></td>
+              <button class="btn btn-link" [disabled]="user.blocked" (click)="block(user)"><i class="fa fa-ban"
+                  aria-hidden="true"></i></button>
+            </td>
+            <td><button class="btn btn-link" [disabled]="!user.blocked" (click)="unblock(user)"><i class="fa fa-unlock"
+                  aria-hidden="true"></i></button></td>
 
 
-          <!-- (click)="delete(user)" -->
+            <!-- (click)="delete(user)" -->
 
-        </tr>
+          </tr>
 
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </ng-template>
   </ng-template>
 </body>
 

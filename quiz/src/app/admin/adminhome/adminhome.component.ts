@@ -8,24 +8,31 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./adminhome.component.css']
 })
 export class AdminhomeComponent implements OnInit {
-  allquiz:any;
-
+  allquiz: any;
+  public loading: any = true;
+  public empty: any = true; 
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true
+    this.empty = true
     this.getdata();
   }
 
-  getdata()
-  {
+  getdata() {
     this.adminService.getAllQuiz()
       .subscribe(
         data => {
-
-          this.allquiz = data['quiz']
-          console.log("yaaha");
-          console.log(this.allquiz);
-
+          if (data['quiz']) {
+            this.loading = false
+            this.allquiz = data['quiz']
+            if (!this.allquiz.length) {
+              this.empty = true;
+            }
+            else {
+              this.empty = false;
+            }
+          }
         },
         error => {
           console.error(error);

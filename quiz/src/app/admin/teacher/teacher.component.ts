@@ -12,29 +12,30 @@ export class TeacherComponent implements OnInit {
   msg: any = [];
   public users: any[];
   avail: boolean;
-  empty: boolean;
+  public loading: any = true;
+  public empty: any = true;
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
-    this.empty=false;
+    this.loading = true
+    this.empty = true
     this.getdata();
   }
 
-  getdata()
-  {
+  getdata() {
     this.adminService.seeteacher()
       .subscribe(
         data => {
+          if (data['user']) {
+            this.loading=false
+            this.users = data['user']
+            if (!this.users.length) {
+              this.empty = true;
 
-          this.users = data['user']
-          if(!this.users.length)
-          {
-            this.empty = true;
-
-          }
-          else
-          {
-            this.empty = false;
+         }
+            else {
+              this.empty = false;
+            }
           }
         },
         error => {

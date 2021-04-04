@@ -14,11 +14,13 @@ export class ViewQuestionComponent implements OnInit {
 
   load: any
   del: any;
+  public empty: any = true;
   // authSubscription: Subscription;
   constructor(private admminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.load = true;
+    this.empty = true
     if (this.admminService.getQuizId() == undefined) {
       this.router.navigate(['/admin/adminhome']);
     }
@@ -60,10 +62,14 @@ export class ViewQuestionComponent implements OnInit {
           if (data['msg']) {
             this.allQuestions = data['msg']
             this.load = false
+            if (!this.allQuestions.length) {
+              this.empty = true;
+            }
+            else {
+              this.empty = false;
+            }
           }
-          // this.one =  this.allQuestions[0]
 
-          console.log(this.allQuestions);
 
         },
         error => {

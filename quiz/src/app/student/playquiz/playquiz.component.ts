@@ -27,9 +27,11 @@ export class PlayquizComponent implements OnInit {
   // submitAvail:any = true;
   oneQuestion: any;
   load: any
+  myurl: any
   constructor(private studentService: StudentService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    // this.toggleFullScreen(document.body)
     this.load = true
     if (this.studentService.getQuizId() == undefined) {
       this.router.navigate(['/student/studenthome']);
@@ -38,15 +40,25 @@ export class PlayquizComponent implements OnInit {
 
       this.quizid = this.studentService.getQuizId();
       this.getAllQuestions(this.quizid)
+      this.myurl = this.router.url;
+      console.log(this.myurl);
+
       window.addEventListener('blur', event => {
-      this.block()
+        if (this.myurl === "/student/playquiz" && this.finalsubmit == false) {
+          this.block()
+        }
       });
 
       window.addEventListener('resize', event => {
-     this.block()
+        if (this.myurl === "/student/playquiz" && this.finalsubmit == false) {
+          this.block()
+        }
       });
+
+
     }
   }
+
 
   getAllQuestions(quizid) {
     this.studentService.getAllQuestion(quizid)
@@ -221,8 +233,7 @@ export class PlayquizComponent implements OnInit {
     this.studentService.block().subscribe(
       data => {
         console.log(data);
-        if(data['message'])
-        {
+        if (data['message']) {
           this.authService.logoutUser()
           this.router.navigate(['/cheat']);
         }

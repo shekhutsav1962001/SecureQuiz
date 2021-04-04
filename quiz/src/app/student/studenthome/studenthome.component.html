@@ -1,32 +1,56 @@
 <app-studentnav></app-studentnav>
 <!-- <p>studenthome works!</p> -->
-<div class="container" id="container">
-  <div class="row">
-    <div class="col-12">
-      <table class="table table-image">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Quiz Title</th>
-            <th scope="col">Quiz Description</th>
-            <th scope="col">Quiz Creater's Email</th>
-            <th scope="col">View Question</th>
+<div *ngIf="loading; then thenBlock else myelseBlock"></div>
+<ng-template #thenBlock>
+  <app-loading></app-loading>
+</ng-template>
+<ng-template #myelseBlock>
+  <div *ngIf="empty; else elseBlock">
+    <div style="margin-top: 50px;" class="d-flex justify-content-center">
+      <div class="row">
+        <div class="col-6">
+          <h5 class="text-capitalize m-lg-5">Seems Like Empty Data!!!!</h5>
+          <h5 class="text-capitalize m-lg-5">Not found any uploaded Quiz!!</h5>
+        </div>
+        <div class="col-6">
+          <img src="../../../assets/img/empty.svg" alt="" class="img-fluid ">
+        </div>
+      </div>
 
-          </tr>
-        </thead>
-        <tbody>
 
-          <tr *ngFor="let item of allquiz;index as i">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.quizname}}</td>
-            <td>{{item.quizdescription}}</td>
-            <td>{{item.owneremail}}</td>
-            <td>
-              <button (click)="playquiz(item)" class="btn btn-light">Play Quiz</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
-</div>
+
+  <ng-template #elseBlock>
+    <div class="container" id="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-image">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Quiz Title</th>
+                <th scope="col">Quiz Description</th>
+                <th scope="col">Quiz Creater's Email</th>
+                <th scope="col">View Question</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let item of allquiz;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.quizname}}</td>
+                <td>{{item.quizdescription}}</td>
+                <td>{{item.owneremail}}</td>
+                <td>
+                  <button (click)="playquiz(item)" class="btn btn-light">Play Quiz</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>
