@@ -42,9 +42,9 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'reset-password-done', component: ResetPasswordDoneComponent },
   // testing
-  { path: 'a', component: TempComponent },
+  // { path: 'a', component: TempComponent },
   // { path: 't', component: CheatingComponent},
-  { path: 'b', component: IndexheaderComponent },
+  // { path: 'b', component: IndexheaderComponent },
   // teacher
   { path: 'teacher/teacherhome', component: TeacherhomeComponent, canActivate: [TeacherGuard] },
   { path: 'teacher/createquiz', component: CreatequizComponent, canActivate: [TeacherGuard] },

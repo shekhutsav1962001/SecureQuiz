@@ -31,7 +31,7 @@ export class SeequestionComponent implements OnInit {
       else {
         this.del = this.teacherService.getDelete()
         this.quizid = this.teacherService.getQuizId();
-        console.log(this.del);
+        // console.log(this.del);
         this.getAllQuestions(this.quizid)
       }
 
@@ -47,11 +47,11 @@ export class SeequestionComponent implements OnInit {
     this.teacherService.deleteQuestion(one._id)
       .subscribe(
         data => {
-          console.log(data);
+          // console.log(data);
           this.getAllQuestions(this.quizid)
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -59,8 +59,8 @@ export class SeequestionComponent implements OnInit {
   }
 
   getAllQuestions(quizid) {
-    console.log("hahaha");
-    console.log(quizid);
+    // console.log("hahaha");
+    // console.log(quizid);
 
     this.teacherService.getAllQuestion(quizid)
       .subscribe(
@@ -79,11 +79,11 @@ export class SeequestionComponent implements OnInit {
           }
           // this.one =  this.allQuestions[0]
 
-          console.log(this.allQuestions);
+          // console.log(this.allQuestions);
 
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

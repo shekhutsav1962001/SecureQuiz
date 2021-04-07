@@ -41,7 +41,7 @@ export class PlayquizComponent implements OnInit {
       this.quizid = this.studentService.getQuizId();
       this.getAllQuestions(this.quizid)
       this.myurl = this.router.url;
-      console.log(this.myurl);
+      // console.log(this.myurl);
 
       window.addEventListener('blur', event => {
         if (this.myurl === "/student/playquiz" && this.finalsubmit == false) {
@@ -75,11 +75,11 @@ export class PlayquizComponent implements OnInit {
             this.countdown();
           }
 
-          console.log(this.allQuestions);
+          // console.log(this.allQuestions);
 
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -141,13 +141,13 @@ export class PlayquizComponent implements OnInit {
             this.flageLast = true;
           }
           this.timePerQuestion = this.time;
-          console.log("reset timer");
+          // console.log("reset timer");
         }
         else {
           // this.router.navigate(['/']);
           this.myStopFunction(this.interval);
           // localStorage.removeItem('load');
-          console.log("timeout");
+          // console.log("timeout");
           this.finalsubmit = true;
           this.getScore();
         }
@@ -178,17 +178,17 @@ export class PlayquizComponent implements OnInit {
     if (this.questionCounter > this.totalQuestion) {
       // this.router.navigate(['/']);
       this.myStopFunction(this.interval);
-      this.authService.testdone(JSON.stringify(this.ansOfOneQuestion))
-        .subscribe(
-          data => {
-            if (data['msg']) {
-              console.log('data of msh');
-              console.log(data['msg']);
-            }
-          },
-          error => { console.error(error); }
+      // this.authService.testdone(JSON.stringify(this.ansOfOneQuestion))
+      //   .subscribe(
+      //     data => {
+      //       if (data['msg']) {
+      //         console.log('data of msh');
+      //         console.log(data['msg']);
+      //       }
+      //     },
+      //     error => { console.error(error); }
 
-        )
+      //   )
     }
   }
   navigatehome() {
@@ -232,14 +232,14 @@ export class PlayquizComponent implements OnInit {
 
     this.studentService.block().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         if (data['message']) {
           this.authService.logoutUser()
           this.router.navigate(['/cheat']);
         }
       },
       (error) => {
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }

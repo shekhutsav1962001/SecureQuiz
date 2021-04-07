@@ -57,7 +57,9 @@ export class LoginStudentComponent implements OnInit {
           window.location.reload();
           this.router.navigate(['/student']);
         },
-        error => { console.error(error); }
+        error => {
+          this.router.navigate(['/error']);
+        }
 
 
       )
@@ -76,14 +78,14 @@ export class LoginStudentComponent implements OnInit {
     this.authService.login(JSON.stringify(f.value))
       .subscribe(
         data => {
-          console.log(data);
+
           if (data['msg']) {
             this.msg = data['msg'];
             this.avail = true;
             return;
           }
           if (data['role'] == "admin") {
-            console.log("admin");
+            // console.log("admin");
             localStorage.setItem('token', data['token']);
 
             localStorage.setItem('admin', 'yes');
@@ -93,14 +95,14 @@ export class LoginStudentComponent implements OnInit {
 
           }
           else if (data['role'] == "student") {
-            console.log("student")
+            // console.log("student")
             if (data['blocked'] == true) {
               this.msg = "You are blocked by Admin wait until admin unblock you!!!";
               this.avail = true;
               return;
             }
             else {
-              console.log("not blocked");
+              // console.log("not blocked");
               localStorage.setItem('token', data['token']);
               localStorage.setItem('userid', f.controls.email.value);
 
@@ -112,7 +114,7 @@ export class LoginStudentComponent implements OnInit {
             // this.router.navigate(['/a']);
           }
           else {
-            console.log("teacher");
+            // console.log("teacher");
 
             if (data['blocked'] == true) {
               this.msg = "You are blocked by Admin wait until admin unblock you!!!";
@@ -132,12 +134,12 @@ export class LoginStudentComponent implements OnInit {
           }
 
         },
-        error => { console.error(error); }
+        error => {      this.router.navigate(['/error']); }
       )
   }
 
   signinup() {
-    console.log("hello1");
+    // console.log("hello1");
     this.msg = "";
     this.avail = false;
   }

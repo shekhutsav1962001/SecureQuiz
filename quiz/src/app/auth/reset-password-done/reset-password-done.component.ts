@@ -34,7 +34,8 @@ export class ResetPasswordDoneComponent implements OnInit {
 
     this.authService.resetpassworddone(JSON.stringify(f.value))
       .subscribe(
-        data => { console.log(data);
+        data => {
+          // console.log(data);
           if (data['msg']) {
             this.msg = data['msg'];
             this.avail = true;
@@ -42,7 +43,7 @@ export class ResetPasswordDoneComponent implements OnInit {
           }
           this.router.navigate(['/']);
         },
-        error => { console.error(error); this.msg = error; }
+        error => {      this.router.navigate(['/error']); }
       )
     // this.msg = "hellp";
     // this.avail = true;

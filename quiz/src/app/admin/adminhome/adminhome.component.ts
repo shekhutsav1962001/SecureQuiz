@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AdminhomeComponent implements OnInit {
   allquiz: any;
   public loading: any = true;
-  public empty: any = true; 
+  public empty: any = true;
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
@@ -35,7 +35,8 @@ export class AdminhomeComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          // console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -53,12 +54,12 @@ export class AdminhomeComponent implements OnInit {
       .subscribe(
         data => {
 
-          console.log(data);
+          // console.log(data);
           this.getdata();
           // this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

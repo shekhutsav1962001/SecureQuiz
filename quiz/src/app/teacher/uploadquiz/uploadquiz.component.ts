@@ -42,7 +42,7 @@ export class UploadquizComponent implements OnInit {
           // this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -56,15 +56,15 @@ export class UploadquizComponent implements OnInit {
   }
 
   upload(quiz) {
-    console.log("upload");
-    console.log(quiz);
-    console.log(quiz._id);
+    // console.log("upload");
+    // console.log(quiz);
+    // console.log(quiz._id);
     this.teacherService.uploadquiz(quiz._id)
       .subscribe(
         data => {
 
           // this.quiz = data['quiz']
-          console.log(data);
+          // console.log(data);
           if (data['msg']) {
             this.msg = data['msg'];
             this.avail = true;
@@ -80,7 +80,7 @@ export class UploadquizComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -92,11 +92,11 @@ export class UploadquizComponent implements OnInit {
       .subscribe(
         data => {
 
-          console.log(data);
+          // console.log(data);
           this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

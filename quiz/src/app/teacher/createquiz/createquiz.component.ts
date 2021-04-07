@@ -30,7 +30,7 @@ export class CreatequizComponent implements OnInit {
         },
         error =>
         {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

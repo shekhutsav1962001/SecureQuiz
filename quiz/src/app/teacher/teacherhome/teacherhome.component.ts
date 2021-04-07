@@ -28,7 +28,7 @@ export class TeacherhomeComponent implements OnInit {
           if (data['quiz']) {
             this.quiz = data['quiz']
             this.loading = false;
-            console.log(this.quiz.length);
+            // console.log(this.quiz.length);
             if (!this.quiz.length) {
               this.empty = true;
 
@@ -42,7 +42,7 @@ export class TeacherhomeComponent implements OnInit {
           // this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -61,12 +61,12 @@ export class TeacherhomeComponent implements OnInit {
       .subscribe(
         data => {
 
-          console.log(data);
+          // console.log(data);
           this.getdata();
           // this.router.navigate(['/teacher/teacherhome']);
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

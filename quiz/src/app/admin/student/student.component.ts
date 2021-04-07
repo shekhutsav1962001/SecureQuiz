@@ -28,7 +28,7 @@ export class StudentComponent implements OnInit {
       .subscribe(
         data => {
           if (data['user']) {
-            this.loading=false
+            this.loading = false
             this.users = data['user']
             if (!this.users.length) {
               this.empty = true;
@@ -39,7 +39,7 @@ export class StudentComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -51,13 +51,13 @@ export class StudentComponent implements OnInit {
     var userid = user._id;
     this.adminService.blockuser(userid).subscribe(
       data => {
-
-        this.router.navigate(['/admin/adminhome']);
+        this.getdata()
+        // this.router.navigate(['/admin/adminhome']);
       },
       (error) => {
 
 
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }
@@ -66,10 +66,11 @@ export class StudentComponent implements OnInit {
     var userid = user._id;
     this.adminService.unblockuser(userid).subscribe(
       data => {
-        this.router.navigate(['/admin/adminhome']);
+        this.getdata()
+        // this.router.navigate(['/admin/adminhome']);
       },
       (error) => {
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }

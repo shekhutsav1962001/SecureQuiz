@@ -33,7 +33,7 @@ export class StudenthomeComponent implements OnInit {
           if (data['quiz']) {
             this.loading = false
             this.allquiz = data['quiz']
-            console.log(this.allquiz.length);
+            // console.log(this.allquiz.length);
             if (!this.allquiz.length) {
               this.empty = true;
             }
@@ -43,7 +43,7 @@ export class StudenthomeComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         })
   }
 

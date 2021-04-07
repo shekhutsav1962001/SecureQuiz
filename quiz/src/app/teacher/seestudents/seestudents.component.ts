@@ -39,7 +39,7 @@ export class SeestudentsComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -55,12 +55,12 @@ export class SeestudentsComponent implements OnInit {
         // this.adminService.avail = true;
         // this.adminService.msg = "Successfully Blocked User!!!";
         // this.router.navigate(['/admin']);
-        this.router.navigate(['/teacher/teacherhome']);
+        this.getdata()
       },
       (error) => {
 
 
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }
@@ -69,10 +69,10 @@ export class SeestudentsComponent implements OnInit {
     var userid = user._id;
     this.teacherService.unblockuser(userid).subscribe(
       data => {
-        this.router.navigate(['/teacher/teacherhome']);
+        this.getdata()
       },
       (error) => {
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }

@@ -41,11 +41,11 @@ export class ViewQuestionComponent implements OnInit {
     this.admminService.deleteQuestion(one._id)
       .subscribe(
         data => {
-          console.log(data);
+
           this.getAllQuestions(this.quizid)
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -53,8 +53,8 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   getAllQuestions(quizid) {
-    console.log("hahaha");
-    console.log(quizid);
+    // console.log("hahaha");
+    // console.log(quizid);
 
     this.admminService.getAllQuestion(quizid)
       .subscribe(
@@ -73,7 +73,7 @@ export class ViewQuestionComponent implements OnInit {
 
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 

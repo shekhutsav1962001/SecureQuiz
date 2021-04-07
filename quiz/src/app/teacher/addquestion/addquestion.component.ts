@@ -38,16 +38,16 @@ export class AddquestionComponent implements OnInit {
     this.options.push({optionValue: '4',optionText:f.controls.optionD.value});
     // console.log(this.options);
     this.obj = {quizid:this.quizid,options:this.options,questionText:f.controls.questionText.value,answer:f.controls.answer.value}
-    console.log(this.obj);
+    // console.log(this.obj);
     this.teacherService.addQuestion(this.obj)
       .subscribe(
         data => {
-          console.log(data);
+          // console.log(data);
           this.router.navigate(['/teacher/uploadquiz']);
         },
         error =>
         {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
       )
   }

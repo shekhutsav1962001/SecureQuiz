@@ -39,7 +39,7 @@ export class TeacherComponent implements OnInit {
           }
         },
         error => {
-          console.error(error);
+          this.router.navigate(['/error']);
         }
 
 
@@ -51,13 +51,12 @@ export class TeacherComponent implements OnInit {
     var userid = user._id;
     this.adminService.blockuser(userid).subscribe(
       data => {
-
-        this.router.navigate(['/admin/adminhome']);
+        this.getdata()
+        // this.router.navigate(['/admin/adminhome']);
       },
       (error) => {
 
-
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }
@@ -66,10 +65,11 @@ export class TeacherComponent implements OnInit {
     var userid = user._id;
     this.adminService.unblockuser(userid).subscribe(
       data => {
-        this.router.navigate(['/admin/adminhome']);
+        this.getdata()
+        // this.router.navigate(['/admin/adminhome']);
       },
       (error) => {
-        console.log(error);
+        this.router.navigate(['/error']);
       }
     )
   }
