@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'reset-password-done', component: ResetPasswordDoneComponent },
   // testing
-  // { path: 'a', component: TempComponent },
+  { path: 'a', component: TComponent },
   // { path: 't', component: CheatingComponent},
   // { path: 'b', component: IndexheaderComponent },
   // teacher
